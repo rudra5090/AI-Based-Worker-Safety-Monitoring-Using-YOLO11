@@ -6,212 +6,103 @@
 ![Jupyter](https://img.shields.io/badge/Jupyter-Notebook-orange?logo=jupyter)
 ![License](https://img.shields.io/badge/License-MIT-yellow)
 
-## 📌 Project Overview
+## Overview
 
-This project presents an **AI-Based Worker Safety Monitoring System** using the **YOLO11 object detection model**. The system automatically detects whether workers are wearing safety helmets in images or video streams.
+An AI-based worker-safety monitoring project using **YOLO11** for safety-helmet detection in images and video. The project demonstrates dataset preparation, object-detection training, evaluation, and inference with Python, Ultralytics, OpenCV, and Jupyter.
 
-The objective is to improve workplace safety by providing real-time helmet detection in industrial environments such as construction sites, factories, and manufacturing plants.
+## Features
 
----
+- Helmet detection on images and video sources
+- YOLO11-based object detection
+- Training and evaluation workflow
+- Saved model weights for inference
+- Jupyter-based experimentation
 
-## 🎯 Objectives
-
-- Detect workers wearing helmets.
-- Detect workers without helmets.
-- Improve workplace safety through AI-based monitoring.
-- Reduce manual safety inspections.
-- Enable real-time detection using YOLO11.
-
----
-
-## 🚀 Features
-
-- ✅ Real-time helmet detection
-- ✅ Image detection
-- ✅ High detection accuracy
-- ✅ YOLO11-based object detection
-- ✅ Fast inference speed
-- ✅ Easy deployment
-- ✅ Industrial safety monitoring
-
----
-
-## 🛠️ Technologies Used
+## Tech stack
 
 | Technology | Purpose |
-|------------|---------|
-| Python | Programming Language |
-| YOLO11 | Object Detection |
-| OpenCV | Image Processing |
-| Ultralytics | YOLO Framework |
-| Jupyter Notebook | Development |
-| NumPy | Numerical Computing |
-| Matplotlib | Visualization |
+|---|---|
+| Python | Development |
+| YOLO11 / Ultralytics | Object detection |
+| OpenCV | Image/video processing |
+| PyTorch | Model runtime |
+| Jupyter | Experimentation |
+| NumPy / Matplotlib | Data and visualization |
 
----
+## Project structure
 
-## 📂 Project Structure
-
-```
+```text
 AI-Based-Worker-Safety-Monitoring-Using-YOLO11/
-
-│
 ├── Ai_based_safety_monitoring.ipynb
 ├── best.pt
 ├── yolov11_config.yaml
 ├── test-imgs/
 ├── train-18/
+├── requirements.txt
 └── README.md
 ```
 
----
+## Reproducible setup
 
-## 📊 Model Performance
-
-| Metric | Value |
-|---------|--------|
-| Precision | 96.13% |
-| Recall | 95% |
-| mAP@50 | 96% |
-| Framework | YOLO11 |
-
-> *Performance may vary depending on the dataset and hardware configuration.*
-
----
-
-## 📷 Sample Results
-
-### Helmet Detection
-
-<img src="train-18/results.png" width="700">
-
-### Confusion Matrix
-
-<img src="train-18/confusion_matrix.png" width="600">
-
----
-
-## 💻 Installation
-
-Clone the repository
+Use Python 3.10 for the environment used during development.
 
 ```bash
 git clone https://github.com/rudra5090/AI-Based-Worker-Safety-Monitoring-Using-YOLO11.git
-```
-
-Move to project folder
-
-```bash
 cd AI-Based-Worker-Safety-Monitoring-Using-YOLO11
+python -m pip install -r requirements.txt
 ```
 
-Install dependencies
+If you use Jupyter, register the environment as a kernel before opening the notebook.
 
-```bash
-pip install ultralytics
-pip install opencv-python
-pip install matplotlib
-pip install numpy
-```
-
----
-
-## ▶️ Run the Project
-
-Open Jupyter Notebook
-
-```bash
-jupyter notebook
-```
-
-Open
-
-```
-Ai_based_safety_monitoring.ipynb
-```
-
-Run all cells.
-
----
-
-## 📈 Training
-
-The model was trained using the Ultralytics YOLO11 framework.
-
-Example training command
-
-```python
-from ultralytics import YOLO
-
-model = YOLO("yolo11n.pt")
-
-model.train(
-    data="yolov11_config.yaml",
-    epochs=50,
-    imgsz=640
-)
-```
-
----
-
-## 🔍 Prediction
+## Run inference
 
 ```python
 from ultralytics import YOLO
 
 model = YOLO("best.pt")
-
-results = model.predict(
-    source="test-imgs",
-    conf=0.25,
-    save=True
-)
+results = model.predict(source="test-imgs", conf=0.25, save=True)
 ```
 
----
+## Training
 
-## 🌟 Applications
+The training configuration is stored in `yolov11_config.yaml`. A representative Ultralytics training call is:
 
-- Construction Sites
-- Manufacturing Industries
-- Smart Factories
-- Mining Industries
-- Warehouse Safety
-- Industrial Monitoring
-- PPE Compliance Monitoring
+```python
+from ultralytics import YOLO
 
----
+model = YOLO("yolo11n.pt")
+model.train(data="yolov11_config.yaml", epochs=50, imgsz=640)
+```
 
-## 📌 Future Improvements
+## Evaluation
 
-- Detect multiple PPE items
-- Helmet + Safety Vest Detection
-- Live CCTV Monitoring
-- Person Tracking
-- Mobile Application
-- Cloud Deployment
-- Alert Notification System
+The repository includes training artifacts under `train-18/`. When reporting model performance, use the metrics from the final training run and record the dataset split, image size, epoch count, and model checkpoint so results remain reproducible.
 
----
+## Troubleshooting
 
-## 👨‍💻 Author
+- If `cv2.imshow()` is unavailable in Jupyter, display saved inference output instead.
+- If the notebook uses a different Python interpreter, select the environment containing Ultralytics and OpenCV.
+- Keep large model artifacts and datasets documented clearly so another developer knows which files are required.
 
-**Rudranarayan Debata**
+## Applications
 
-Computer Science Engineering Student
+- Construction-site PPE monitoring
+- Manufacturing safety checks
+- Warehouse safety monitoring
+- Industrial computer-vision experiments
 
-GitHub: https://github.com/rudra5090
+## Future improvements
 
----
+- Detect additional PPE such as safety vests
+- Add person tracking
+- Add live CCTV monitoring
+- Add alert notifications
+- Explore cloud deployment
 
-## ⭐ Support
+## Author
 
-If you like this project, please ⭐ Star this repository.
+**Rudranarayan Debata** — [GitHub](https://github.com/rudra5090)
 
-It helps others discover the project and motivates further development.
-
----
-
-## 📜 License
+## License
 
 This project is licensed under the MIT License.
